@@ -70,7 +70,7 @@ func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error)
 		token = *authToken
 	}
 
-	req.Header.Set("Authorization: Bearer", token)
+	req.Header.Set("Authorization", token)
 
 	res, err := c.HTTPClient.Do(req)
 	if err != nil {
