@@ -1,3 +1,3 @@
-module github.com/hashicorp-demoapp/product-client-go
+module github.com/BuildaCloud/product-client-go
 
 go 1.13
