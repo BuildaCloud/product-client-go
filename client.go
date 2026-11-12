@@ -2,7 +2,6 @@ package product
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -28,7 +27,7 @@ type AuthStruct struct {
 type AuthResponse struct {
 	UserID   int    `json:"user_id"`
 	Username string `json:"username"`
-	Token    string `json:"token"`
+	Token    string `json:"access_token"`
 }
 
 // NewClient -
