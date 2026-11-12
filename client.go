@@ -2,6 +2,7 @@ package product
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
