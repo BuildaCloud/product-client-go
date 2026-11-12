@@ -1,4 +1,4 @@
-package hashicups
+package product
 
 // Order -
 type Order struct {

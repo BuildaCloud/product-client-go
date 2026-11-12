@@ -1,4 +1,4 @@
-package hashicups
+package product
 
 import (
 	"fmt"
@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-// HostURL - Default Hashicups URL
-const HostURL string = "http://localhost:19090"
+// HostURL - Default product URL
+const HostURL string = "http://localhost:8000"
 
 // Client -
 type Client struct {
@@ -35,7 +35,7 @@ type AuthResponse struct {
 func NewClient(host, username, password *string) (*Client, error) {
 	c := Client{
 		HTTPClient: &http.Client{Timeout: 10 * time.Second},
-		// Default Hashicups URL
+		// Default product URL
 		HostURL: HostURL,
 	}
 
