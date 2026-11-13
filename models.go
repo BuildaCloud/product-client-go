@@ -34,3 +34,10 @@ type ProductResponse struct {
     Description string `json:"description"`
     Price       string `json:"price"`
 }
+
+// PATCH request - nil fields are omitted
+type ProductUpdateRequest struct {
+    Name        *string  `json:"name,omitempty"`
+    Description *string  `json:"description,omitempty"`
+    Price       *float64 `json:"price,omitempty"`
+}
