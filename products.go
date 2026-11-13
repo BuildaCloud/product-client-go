@@ -46,7 +46,7 @@ func (c *Client) GetProduct(productID string) (*ProductResponse, error) {
 	return &product, nil
 }
 
-func (c *Client) CreateProduct(product ProductRequest, authToken *string) (*ProductRequest, error) {
+func (c *Client) CreateProduct(product ProductRequest, authToken *string) (*ProductResponse, error) {
 	rb, err := json.Marshal(product)
 	if err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ func (c *Client) CreateProduct(product ProductRequest, authToken *string) (*Prod
 		return nil, err
 	}
 
-	newProduct := ProductRequest{}
+	newProduct := ProductResponse{}
 	err = json.Unmarshal(body, &newProduct)
 	if err != nil {
 		return nil, err
