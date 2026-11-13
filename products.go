@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func (c *Client) GetProducts() ([]Product, error) {
+func (c *Client) GetProducts() ([]ProductResponse, error) {
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/products", c.HostURL), nil)
 	if err != nil {
 		return nil, err
@@ -18,7 +18,7 @@ func (c *Client) GetProducts() ([]Product, error) {
 		return nil, err
 	}
 
-	products := []Product{}
+	products := []ProductResponse{}
 	err = json.Unmarshal(body, &products)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func (c *Client) GetProducts() ([]Product, error) {
 	return products, nil
 }
 
-func (c *Client) GetProduct(productID string) ([]Product, error) {
+func (c *Client) GetProduct(productID string) (*ProductResponse, error) {
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/products/%s", c.HostURL, productID), nil)
 	if err != nil {
 		return nil, err
@@ -38,16 +38,15 @@ func (c *Client) GetProduct(productID string) ([]Product, error) {
 		return nil, err
 	}
 
-	products := []Product{}
-	err = json.Unmarshal(body, &products)
-	if err != nil {
-		return nil, err
-	}
+	var product ProductResponse
+	if err := json.Unmarshal(body, &product); err != nil {
+        return nil, err
+    }
 
-	return products, nil
+	return &product, nil
 }
 
-func (c *Client) CreateProduct(product Product, authToken *string) (*Product, error) {
+func (c *Client) CreateProduct(product ProductRequest, authToken *string) (*ProductRequest, error) {
 	rb, err := json.Marshal(product)
 	if err != nil {
 		return nil, err
@@ -63,7 +62,7 @@ func (c *Client) CreateProduct(product Product, authToken *string) (*Product, er
 		return nil, err
 	}
 
-	newProduct := Product{}
+	newProduct := ProductRequest{}
 	err = json.Unmarshal(body, &newProduct)
 	if err != nil {
 		return nil, err

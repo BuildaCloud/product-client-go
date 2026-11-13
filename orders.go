@@ -1,5 +1,5 @@
 package product
-
+/* 
 import (
 	"encoding/json"
 	"errors"
@@ -119,4 +119,4 @@ func (c *Client) DeleteOrder(orderID string, authToken *string) error {
 	}
 
 	return nil
-}
+} */
