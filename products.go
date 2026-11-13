@@ -71,7 +71,7 @@ func (c *Client) CreateProduct(product ProductRequest, authToken *string) (*Prod
 	return &newProduct, nil
 }
 
-// UpdateOrder - Updates an order
+// UpdateProduct - Updates an Product
 func (c *Client) UpdateProduct(productID string, product ProductUpdateRequest, authToken *string) (*ProductResponse, error) {
 	rb, err := json.Marshal(product)
 	if err != nil {
@@ -96,21 +96,13 @@ func (c *Client) UpdateProduct(productID string, product ProductUpdateRequest, a
 	return &updatedProduct, nil
 }
 
-/* // DeleteOrder - Deletes an order
-func (c *Client) DeleteOrder(orderID string, authToken *string) error {
-	req, err := http.NewRequest("DELETE", fmt.Sprintf("%s/orders/%s", c.HostURL, orderID), nil)
+// DeleteProduct - Deletes an product
+func (c *Client) DeleteProduct(productID string, authToken *string) error {
+	req, err := http.NewRequest("DELETE", fmt.Sprintf("%s/products/%s", c.HostURL, productID), nil)
 	if err != nil {
 		return err
 	}
 
-	body, err := c.doRequest(req, authToken)
-	if err != nil {
-		return err
-	}
-
-	if string(body) != "Deleted order" {
-		return errors.New(string(body))
-	}
-
-	return nil
-} */
+	_, err = c.doRequest(req, authToken)
+	return err
+}
